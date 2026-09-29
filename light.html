@@ -45,7 +45,9 @@ h1 {
   font-style: italic;
 }
 
-/* CAKE */
+/* =========================
+   CAKE
+========================= */
 
 .cake-area {
   display: flex;
@@ -60,11 +62,11 @@ h1 {
   position: relative;
   width: 230px;
   height: 190px;
-  transition: transform .3s ease;
+  transition: transform .35s ease;
 }
 
 .cake:hover {
-  transform: scale(1.02);
+  transform: scale(1.025);
 }
 
 .cake svg {
@@ -73,81 +75,241 @@ h1 {
   overflow: visible;
 }
 
-/* FLAME */
+/* =========================
+   FLAME
+========================= */
 
 .flames {
   position: absolute;
-  top: 7px;
+  top: -1px;
   left: 50%;
-  width: 30px;
-  height: 40px;
+  width: 32px;
+  height: 43px;
   transform: translateX(-50%);
   pointer-events: none;
+
   opacity: 0;
-  transition: opacity .5s ease;
+  transition: opacity .45s ease;
 }
 
 .cake.lit .flames {
   opacity: 1;
 }
 
+/* outer flame */
+
 .flame {
   position: absolute;
   left: 8px;
-  top: 5px;
-  width: 14px;
-  height: 23px;
+  top: 2px;
+
+  width: 16px;
+  height: 25px;
+
   background: #171717;
-  border-radius: 70% 40% 65% 40%;
-  transform: rotate(45deg);
-  animation: flicker .7s ease-in-out infinite alternate;
+
+  border-radius:
+    55% 45% 55% 45%;
+
+  transform:
+    rotate(45deg)
+    scale(.95);
+
+  transform-origin: 50% 80%;
+
+  animation:
+    flameMove .8s ease-in-out infinite alternate;
 }
 
-@keyframes flicker {
+/* inner flame */
+
+.flame::after {
+  content: "";
+  position: absolute;
+
+  width: 8px;
+  height: 13px;
+
+  left: 4px;
+  top: 7px;
+
+  background: #f4f1ea;
+
+  border-radius:
+    60% 40% 60% 40%;
+
+  transform: rotate(-2deg);
+}
+
+/* tiny flame tip */
+
+.flame::before {
+  content: "";
+  position: absolute;
+
+  width: 6px;
+  height: 10px;
+
+  left: 5px;
+  top: -4px;
+
+  background: #171717;
+
+  border-radius: 70% 40% 60% 40%;
+
+  transform: rotate(-12deg);
+}
+
+@keyframes flameMove {
+
   0% {
-    transform: rotate(43deg) scale(.9);
+    transform:
+      rotate(42deg)
+      scale(.92)
+      translateY(1px);
   }
 
-  50% {
-    transform: rotate(48deg) scale(1.08);
+  35% {
+    transform:
+      rotate(47deg)
+      scale(1.02)
+      translateY(-1px);
+  }
+
+  70% {
+    transform:
+      rotate(40deg)
+      scale(.96)
+      translateY(1px);
   }
 
   100% {
-    transform: rotate(42deg) scale(.96);
+    transform:
+      rotate(45deg)
+      scale(1.06)
+      translateY(-2px);
   }
+
 }
 
-/* HINT */
+/* =========================
+   HINT
+========================= */
 
 .hint {
   margin-top: 20px;
+
   font-size: 10px;
   letter-spacing: .15em;
+
   opacity: .55;
-  transition: opacity .5s ease;
+
+  transition:
+    opacity .6s ease;
 }
 
 .hint.hidden {
   opacity: 0;
 }
 
-/* FINAL MESSAGE */
+/* =========================
+   FINAL MESSAGE
+========================= */
 
 .message {
-  margin-top: 50px;
-  font-size: 20px;
-  letter-spacing: .02em;
+  margin-top: 52px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 29px;
+  font-weight: 400;
+
+  letter-spacing: .015em;
+
+  line-height: 1.35;
+
   opacity: 0;
-  transform: translateY(8px);
+
+  transform:
+    translateY(18px)
+    scale(.97);
+
   transition:
-    opacity 1.5s ease,
-    transform 1.5s ease;
+    opacity 2s ease,
+    transform 2s cubic-bezier(.22,1,.36,1);
+
   pointer-events: none;
 }
 
 .message.visible {
   opacity: 1;
-  transform: translateY(0);
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  animation:
+    messageBreath 4s ease-in-out 2s infinite;
+}
+
+@keyframes messageBreath {
+
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.025);
+  }
+
+}
+
+/* heart */
+
+.message .heart {
+  display: inline-block;
+
+  margin-left: 5px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 24px;
+
+  transform: translateY(-1px);
+
+  animation:
+    heartBeat 2.8s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+
+  0%, 70%, 100% {
+    transform:
+      translateY(-1px)
+      scale(1);
+  }
+
+  76% {
+    transform:
+      translateY(-1px)
+      scale(1.16);
+  }
+
+  82% {
+    transform:
+      translateY(-1px)
+      scale(1);
+  }
+
+  88% {
+    transform:
+      translateY(-1px)
+      scale(1.10);
+  }
+
 }
 </style>
 </head>
@@ -166,13 +328,14 @@ h1 {
 
     <div class="cake" id="cake">
 
-      <!-- STYLIZED REALISTIC CAKE -->
+      <!-- CAKE -->
 
       <svg viewBox="0 0 230 190"
            xmlns="http://www.w3.org/2000/svg"
            aria-label="cake">
 
         <!-- shadow -->
+
         <ellipse
           cx="115"
           cy="170"
@@ -181,7 +344,9 @@ h1 {
           fill="#000"
           opacity=".10"/>
 
+
         <!-- bottom cake layer -->
+
         <path
           d="M43 105
              C43 94 76 87 115 87
@@ -189,11 +354,14 @@ h1 {
              L187 143
              C187 155 155 163 115 163
              C75 163 43 155 43 143Z"
+
           fill="#d9b08b"
           stroke="#171717"
           stroke-width="2.2"/>
 
-        <!-- bottom cake shading -->
+
+        <!-- bottom shading -->
+
         <path
           d="M43 108
              C49 117 79 123 115 123
@@ -201,10 +369,13 @@ h1 {
              L187 143
              C187 155 155 163 115 163
              C75 163 43 155 43 143Z"
+
           fill="#c9946d"
           opacity=".65"/>
 
-        <!-- cream middle -->
+
+        <!-- cream layer -->
+
         <path
           d="M44 106
              C51 115 80 121 115 121
@@ -212,11 +383,14 @@ h1 {
              L186 116
              C177 126 148 132 115 132
              C82 132 53 126 44 116Z"
+
           fill="#f1e3ca"
           stroke="#171717"
           stroke-width="1.7"/>
 
+
         <!-- upper cake -->
+
         <path
           d="M48 80
              C48 69 78 61 115 61
@@ -224,11 +398,14 @@ h1 {
              L182 106
              C182 117 151 124 115 124
              C79 124 48 117 48 106Z"
+
           fill="#dcb38e"
           stroke="#171717"
           stroke-width="2.2"/>
 
-        <!-- upper cake shading -->
+
+        <!-- upper shading -->
+
         <path
           d="M48 83
              C56 91 83 96 115 96
@@ -236,10 +413,13 @@ h1 {
              L182 106
              C182 117 151 124 115 124
              C79 124 48 117 48 106Z"
+
           fill="#c8956e"
           opacity=".55"/>
 
+
         <!-- frosting -->
+
         <path
           d="M47 79
              C49 68 79 59 115 59
@@ -252,22 +432,28 @@ h1 {
              C94 89 93 80 85 80
              C77 80 75 88 67 87
              C59 87 54 83 47 79Z"
+
           fill="#f4e7cf"
           stroke="#171717"
           stroke-width="2.2"/>
 
+
         <!-- frosting highlight -->
+
         <path
           d="M64 72
              C78 66 94 64 115 64
              C136 64 153 66 166 72"
+
           fill="none"
           stroke="#fffaf0"
           stroke-width="3"
           stroke-linecap="round"
           opacity=".8"/>
 
+
         <!-- decorative dots -->
+
         <circle
           cx="67"
           cy="103"
@@ -296,6 +482,7 @@ h1 {
           fill="#171717"
           opacity=".3"/>
 
+
         <!-- ONE CANDLE -->
 
         <rect
@@ -304,31 +491,39 @@ h1 {
           width="14"
           height="31"
           rx="3"
+
           fill="#e6d5b8"
+
           stroke="#171717"
           stroke-width="2"/>
 
-        <!-- candle stripe -->
+
+        <!-- candle stripes -->
 
         <path
           d="M108 39 L122 34
              M108 49 L122 44
              M108 59 L122 54"
+
           stroke="#171717"
           stroke-width="1.5"
           opacity=".55"/>
+
 
         <!-- wick -->
 
         <path
           d="M115 32
              C114 27 116 24 115 21"
+
           fill="none"
+
           stroke="#171717"
           stroke-width="2"
           stroke-linecap="round"/>
 
       </svg>
+
 
       <!-- ONE FLAME -->
 
@@ -340,51 +535,80 @@ h1 {
 
   </div>
 
+
   <div class="hint" id="hint">
     LIGHT THE CANDLE
   </div>
 
+
+  <!-- FINAL MESSAGE -->
+
   <div class="message" id="message">
-    Döt l'bun Pice ❤️
+    Döt l'bun Pice
+    <span class="heart">♥</span>
   </div>
 
 </div>
 
+
 <script>
 
-const cakeArea = document.getElementById("cakeArea");
-const cake = document.getElementById("cake");
-const instruction = document.getElementById("instruction");
-const hint = document.getElementById("hint");
-const message = document.getElementById("message");
+const cakeArea =
+  document.getElementById("cakeArea");
+
+const cake =
+  document.getElementById("cake");
+
+const instruction =
+  document.getElementById("instruction");
+
+const hint =
+  document.getElementById("hint");
+
+const message =
+  document.getElementById("message");
+
 
 let lit = false;
 let finished = false;
+
 
 cakeArea.addEventListener("click", function() {
 
   if (finished) return;
 
+
   if (!lit) {
 
-    // ACCENDI LA CANDELA
+    /* ACCENDI LA CANDELA */
+
     lit = true;
+
     cake.classList.add("lit");
 
     hint.textContent = "MAKE A WISH";
 
-  } else {
+  }
 
-    // SPEGNI LA CANDELA
+  else {
+
+    /* SPEGNI LA CANDELA */
+
     lit = false;
+
     cake.classList.remove("lit");
 
     instruction.textContent = "";
+
     hint.classList.add("hidden");
 
+
     setTimeout(function() {
+
       message.classList.add("visible");
+
       finished = true;
+
     }, 900);
 
   }
