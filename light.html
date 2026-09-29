@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>A LIGHT FROM NEPAL</title>
 
 <style>
@@ -37,14 +36,12 @@ h1 {
 }
 
 .instruction {
-  margin: 0 0 58px;
+  margin: 0 0 45px;
+  min-height: 26px;
   font-size: 17px;
   line-height: 1.55;
   font-style: italic;
-  min-height: 26px;
 }
-
-/* CAKE AREA */
 
 .cake-area {
   display: flex;
@@ -52,41 +49,84 @@ h1 {
   align-items: center;
   cursor: pointer;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* CANDLE */
 
-.candle {
+.candle-wrap {
   position: relative;
-  width: 9px;
+  width: 24px;
+  height: 75px;
+  z-index: 5;
+}
+
+.candle {
+  position: absolute;
+  left: 7px;
+  bottom: 0;
+  width: 10px;
   height: 52px;
+  border-radius: 2px 2px 1px 1px;
+  background:
+    repeating-linear-gradient(
+      100deg,
+      #eee9df 0px,
+      #eee9df 3px,
+      #d8d1c6 4px,
+      #eee9df 7px
+    );
+  box-shadow:
+    inset 1px 0 rgba(255,255,255,.7),
+    inset -1px 0 rgba(0,0,0,.12);
+}
+
+.wick {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  width: 2px;
+  height: 7px;
   background: #171717;
-  margin-bottom: 0;
+  transform: translateX(-50%);
 }
 
 .flame {
   position: absolute;
   left: 50%;
-  top: -25px;
-  width: 13px;
-  height: 19px;
-  background: #171717;
-  border-radius: 50% 50% 50% 0;
+  top: -30px;
+  width: 18px;
+  height: 28px;
   transform: translateX(-50%) rotate(45deg);
+  transform-origin: center bottom;
+  border-radius: 70% 40% 65% 40%;
+  background:
+    radial-gradient(
+      circle at 55% 65%,
+      #fff 0%,
+      #fff 18%,
+      #ddd 25%,
+      #777 48%,
+      #171717 72%
+    );
   opacity: 0;
+  filter: blur(.1px);
 }
 
 .candle.lit .flame {
   opacity: 1;
-  animation: flicker .7s infinite alternate;
+  animation: flame 0.65s ease-in-out infinite alternate;
 }
 
-@keyframes flicker {
-  from {
-    transform: translateX(-50%) rotate(43deg) scale(1);
+@keyframes flame {
+  0% {
+    transform: translateX(-50%) rotate(43deg) scale(.95);
   }
-  to {
-    transform: translateX(-50%) rotate(48deg) scale(1.08);
+  50% {
+    transform: translateX(-50%) rotate(48deg) scale(1.05);
+  }
+  100% {
+    transform: translateX(-50%) rotate(42deg) scale(.98);
   }
 }
 
@@ -94,96 +134,142 @@ h1 {
 
 .cake {
   position: relative;
-  width: 190px;
-  height: 75px;
+  width: 250px;
+  height: 155px;
+  filter: drop-shadow(0 8px 7px rgba(0,0,0,.12));
 }
 
-/* top icing */
+/* top of cake */
 
 .cake-top {
   position: absolute;
-  left: 8px;
-  top: 0;
-  width: 174px;
-  height: 30px;
-  background: #171717;
+  left: 12px;
+  top: 12px;
+  width: 226px;
+  height: 62px;
   border-radius: 50%;
-}
-
-/* cake body */
-
-.cake-body {
-  position: absolute;
-  left: 15px;
-  top: 14px;
-  width: 160px;
-  height: 55px;
-  background: #171717;
-  border-radius: 4px 4px 15px 15px;
-}
-
-/* icing drips */
-
-.drip {
-  position: absolute;
-  top: 17px;
-  width: 13px;
-  height: 22px;
-  background: #171717;
-  border-radius: 0 0 10px 10px;
-  z-index: 2;
-}
-
-.drip.one {
-  left: 35px;
-}
-
-.drip.two {
-  left: 70px;
-  height: 17px;
-}
-
-.drip.three {
-  right: 65px;
-  height: 21px;
-}
-
-.drip.four {
-  right: 38px;
-  height: 15px;
-}
-
-/* small details on cake */
-
-.decoration {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f4f1ea;
-  opacity: .7;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      #f9f7f2 0%,
+      #e4ded4 45%,
+      #c8c0b5 72%,
+      #a9a096 100%
+    );
+  border: 1px solid #aaa39a;
   z-index: 3;
 }
 
-.decoration.one {
-  left: 45px;
-  top: 43px;
+/* cake sides */
+
+.cake-side {
+  position: absolute;
+  left: 12px;
+  top: 42px;
+  width: 226px;
+  height: 91px;
+  border-radius: 5px 5px 22px 22px;
+  background:
+    linear-gradient(
+      90deg,
+      #8f8780 0%,
+      #bdb5ab 12%,
+      #d8d1c8 28%,
+      #c4bcb2 52%,
+      #ded8d0 72%,
+      #aaa29a 90%,
+      #89817b 100%
+    );
+  border: 1px solid #928a83;
+  overflow: hidden;
+  z-index: 2;
 }
 
-.decoration.two {
-  left: 88px;
-  top: 54px;
+/* cream layer */
+
+.cream {
+  position: absolute;
+  left: 12px;
+  top: 53px;
+  width: 226px;
+  height: 25px;
+  border-radius: 0 0 50% 50%;
+  background:
+    linear-gradient(
+      to bottom,
+      #faf8f3 0%,
+      #e8e2d9 55%,
+      #cfc8be 100%
+    );
+  z-index: 4;
 }
 
-.decoration.three {
-  right: 47px;
-  top: 44px;
+/* cream drips */
+
+.drip {
+  position: absolute;
+  top: 64px;
+  width: 17px;
+  background: linear-gradient(to right, #eee9e1, #cfc8be);
+  border-radius: 0 0 10px 10px;
+  z-index: 5;
 }
 
-/* HINT */
+.drip.d1 {
+  left: 37px;
+  height: 25px;
+}
+
+.drip.d2 {
+  left: 78px;
+  height: 18px;
+}
+
+.drip.d3 {
+  left: 130px;
+  height: 29px;
+}
+
+.drip.d4 {
+  left: 177px;
+  height: 20px;
+}
+
+/* second cream line */
+
+.cream-line {
+  position: absolute;
+  left: 25px;
+  top: 103px;
+  width: 200px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(245,241,235,.5);
+  z-index: 5;
+}
+
+/* subtle cake texture */
+
+.texture {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  z-index: 6;
+}
+
+.t1 { left: 45px; top: 87px; }
+.t2 { left: 67px; top: 116px; }
+.t3 { left: 102px; top: 91px; }
+.t4 { left: 145px; top: 121px; }
+.t5 { left: 181px; top: 94px; }
+.t6 { left: 205px; top: 113px; }
+
+/* hint */
 
 .hint {
-  margin-top: 28px;
+  margin-top: 25px;
   font-size: 10px;
   letter-spacing: .15em;
   opacity: .55;
@@ -194,10 +280,10 @@ h1 {
   opacity: 0;
 }
 
-/* MESSAGE */
+/* final message */
 
 .message {
-  margin-top: 52px;
+  margin-top: 48px;
   font-size: 20px;
   letter-spacing: .02em;
   opacity: 0;
@@ -225,24 +311,34 @@ h1 {
 
   <div class="cake-area" id="cakeArea">
 
-    <div class="candle" id="candle">
-      <div class="flame"></div>
+    <div class="candle-wrap">
+      <div class="candle" id="candle">
+        <div class="wick"></div>
+        <div class="flame"></div>
+      </div>
     </div>
 
     <div class="cake">
 
+      <div class="cake-side"></div>
+
       <div class="cake-top"></div>
 
-      <div class="cake-body"></div>
+      <div class="cream"></div>
 
-      <div class="drip one"></div>
-      <div class="drip two"></div>
-      <div class="drip three"></div>
-      <div class="drip four"></div>
+      <div class="drip d1"></div>
+      <div class="drip d2"></div>
+      <div class="drip d3"></div>
+      <div class="drip d4"></div>
 
-      <div class="decoration one"></div>
-      <div class="decoration two"></div>
-      <div class="decoration three"></div>
+      <div class="cream-line"></div>
+
+      <div class="texture t1"></div>
+      <div class="texture t2"></div>
+      <div class="texture t3"></div>
+      <div class="texture t4"></div>
+      <div class="texture t5"></div>
+      <div class="texture t6"></div>
 
     </div>
 
