@@ -45,7 +45,7 @@ h1 {
   font-style: italic;
 }
 
-/* CAKE */
+/* CAKE AREA */
 
 .cake-area {
   display: flex;
@@ -58,23 +58,33 @@ h1 {
 
 .cake {
   position: relative;
-  display: inline-block;
-  font-size: 125px;
-  line-height: 1;
+  width: 230px;
+  height: 190px;
+  transition: transform .3s ease;
+}
+
+.cake:hover {
+  transform: scale(1.02);
+}
+
+.cake svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 /* FLAMES */
 
 .flames {
   position: absolute;
-  top: -7px;
+  top: 7px;
   left: 50%;
-  width: 100px;
-  height: 35px;
+  width: 90px;
+  height: 45px;
   transform: translateX(-50%);
   pointer-events: none;
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .5s ease;
 }
 
 .cake.lit .flames {
@@ -83,8 +93,8 @@ h1 {
 
 .flame {
   position: absolute;
-  width: 12px;
-  height: 20px;
+  width: 14px;
+  height: 23px;
   background: #171717;
   border-radius: 70% 40% 65% 40%;
   transform: rotate(45deg);
@@ -92,19 +102,19 @@ h1 {
 }
 
 .flame:nth-child(1) {
-  left: 24px;
-  top: 5px;
+  left: 23px;
+  top: 7px;
 }
 
 .flame:nth-child(2) {
-  left: 44px;
+  left: 39px;
   top: 0;
   animation-delay: .15s;
 }
 
 .flame:nth-child(3) {
-  left: 64px;
-  top: 5px;
+  left: 55px;
+  top: 7px;
   animation-delay: .3s;
 }
 
@@ -125,7 +135,7 @@ h1 {
 /* HINT */
 
 .hint {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 10px;
   letter-spacing: .15em;
   opacity: .55;
@@ -171,8 +181,144 @@ h1 {
 
     <div class="cake" id="cake">
 
-      🎂
+      <!-- STYLIZED REALISTIC CAKE -->
 
+      <svg viewBox="0 0 230 190"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-label="cake">
+
+        <!-- shadow -->
+        <ellipse
+          cx="115"
+          cy="170"
+          rx="78"
+          ry="11"
+          fill="#000"
+          opacity=".10"/>
+
+        <!-- bottom cake layer -->
+        <path
+          d="M43 105
+             C43 94 76 87 115 87
+             C154 87 187 94 187 105
+             L187 143
+             C187 155 155 163 115 163
+             C75 163 43 155 43 143Z"
+          fill="#d9b08b"
+          stroke="#171717"
+          stroke-width="2.2"/>
+
+        <!-- cake side light -->
+        <path
+          d="M43 108
+             C49 117 79 123 115 123
+             C151 123 181 117 187 108
+             L187 143
+             C187 155 155 163 115 163
+             C75 163 43 155 43 143Z"
+          fill="#c9946d"
+          opacity=".65"/>
+
+        <!-- cream middle -->
+        <path
+          d="M44 106
+             C51 115 80 121 115 121
+             C150 121 179 115 186 106
+             L186 116
+             C177 126 148 132 115 132
+             C82 132 53 126 44 116Z"
+          fill="#f1e3ca"
+          stroke="#171717"
+          stroke-width="1.7"/>
+
+        <!-- upper cake -->
+        <path
+          d="M48 80
+             C48 69 78 61 115 61
+             C152 61 182 69 182 80
+             L182 106
+             C182 117 151 124 115 124
+             C79 124 48 117 48 106Z"
+          fill="#dcb38e"
+          stroke="#171717"
+          stroke-width="2.2"/>
+
+        <!-- upper cake shading -->
+        <path
+          d="M48 83
+             C56 91 83 96 115 96
+             C147 96 174 91 182 83
+             L182 106
+             C182 117 151 124 115 124
+             C79 124 48 117 48 106Z"
+          fill="#c8956e"
+          opacity=".55"/>
+
+        <!-- frosting -->
+        <path
+          d="M47 79
+             C49 68 79 59 115 59
+             C151 59 181 68 183 79
+             C178 84 174 86 168 86
+             C162 86 160 78 154 79
+             C147 80 146 89 138 89
+             C130 89 129 80 121 80
+             C112 80 110 89 102 89
+             C94 89 93 80 85 80
+             C77 80 75 88 67 87
+             C59 87 54 83 47 79Z"
+          fill="#f4e7cf"
+          stroke="#171717"
+          stroke-width="2.2"/>
+
+        <!-- frosting highlights -->
+        <path
+          d="M64 72
+             C78 66 94 64 115 64
+             C136 64 153 66 166 72"
+          fill="none"
+          stroke="#fffaf0"
+          stroke-width="3"
+          stroke-linecap="round"
+          opacity=".8"/>
+
+        <!-- small decorative dots -->
+        <circle cx="67" cy="103" r="2" fill="#171717" opacity=".45"/>
+        <circle cx="83" cy="110" r="2" fill="#171717" opacity=".35"/>
+        <circle cx="151" cy="105" r="2" fill="#171717" opacity=".4"/>
+        <circle cx="168" cy="112" r="2" fill="#171717" opacity=".3"/>
+
+        <!-- CANDLE -->
+        <rect
+          x="108"
+          y="32"
+          width="14"
+          height="31"
+          rx="3"
+          fill="#e6d5b8"
+          stroke="#171717"
+          stroke-width="2"/>
+
+        <!-- candle stripe -->
+        <path
+          d="M108 39 L122 34
+             M108 49 L122 44
+             M108 59 L122 54"
+          stroke="#171717"
+          stroke-width="1.5"
+          opacity=".55"/>
+
+        <!-- wick -->
+        <path
+          d="M115 32 C114 27 116 24 115 21"
+          fill="none"
+          stroke="#171717"
+          stroke-width="2"
+          stroke-linecap="round"/>
+
+      </svg>
+
+      <!-- animated flames -->
       <div class="flames">
         <div class="flame"></div>
         <div class="flame"></div>
@@ -184,7 +330,7 @@ h1 {
   </div>
 
   <div class="hint" id="hint">
-    LIGHT THE CANDLES
+    LIGHT THE CANDLE
   </div>
 
   <div class="message" id="message">
@@ -210,7 +356,7 @@ cakeArea.addEventListener("click", function() {
 
   if (!lit) {
 
-    // ACCENDI LE CANDELE
+    // ACCENDI LA CANDELA
     lit = true;
     cake.classList.add("lit");
 
@@ -218,7 +364,7 @@ cakeArea.addEventListener("click", function() {
 
   } else {
 
-    // SPEGNI LE CANDELE
+    // SPEGNI LA CANDELA
     lit = false;
     cake.classList.remove("lit");
 
