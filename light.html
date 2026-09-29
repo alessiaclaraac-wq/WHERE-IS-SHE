@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A LIGHT FROM NEPAL</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f1ea;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page {
+  width: 90%;
+  max-width: 520px;
+  padding: 40px 20px;
+}
+
+h1 {
+  margin: 0 0 22px;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: .03em;
+}
+
+.instruction {
+  margin: 0 0 55px;
+  font-size: 17px;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.cake-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* CANDLE */
+
+.candle {
+  position: relative;
+  width: 10px;
+  height: 48px;
+  background: #171717;
+  margin-bottom: 0;
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -27px;
+  width: 13px;
+  height: 21px;
+  transform: translateX(-50%) rotate(45deg);
+  background: #171717;
+  border-radius: 50% 50% 50% 0;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.candle.lit .flame {
+  opacity: 1;
+  animation: flicker .8s infinite alternate;
+}
+
+@keyframes flicker {
+  from {
+    transform: translateX(-50%) rotate(43deg) scale(1);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(48deg) scale(1.08);
+  }
+}
+
+/* CAKE */
+
+.cake {
+  position: relative;
+  width: 190px;
+  height: 95px;
+  background: #171717;
+  border-radius: 10px 10px 18px 18px;
+  margin-top: 0;
+}
+
+.cake::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 28px;
+  width: 100%;
+  height: 2px;
+  background: #f4f1ea;
+  opacity: .35;
+}
+
+.cake::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 16px;
+  height: 2px;
+  background: #f4f1ea;
+  opacity: .25;
+}
+
+/* small cake details */
+
+.dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f4f1ea;
+  opacity: .65;
+}
+
+.dot.one {
+  left: 30px;
+  top: 48px;
+}
+
+.dot.two {
+  left: 70px;
+  top: 68px;
+}
+
+.dot.three {
+  right: 45px;
+  top: 50px;
+}
+
+.dot.four {
+  right: 25px;
+  top: 70px;
+}
+
+/* MESSAGE */
+
+.message {
+  margin-top: 55px;
+  font-size: 20px;
+  letter-spacing: .02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  pointer-events: none;
+}
+
+.message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hint {
+  margin-top: 18px;
+  font-size: 10px;
+  letter-spacing: .15em;
+  opacity: .55;
+  transition: opacity .5s ease;
+}
+
+.hint.hidden {
+  opacity: 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <h1>A LIGHT FROM NEPAL</h1>
+
+  <p class="instruction" id="instruction">
+    Make a wish.
+  </p>
+
+  <div class="cake-area" id="cakeArea">
+
+    <div class="candle" id="candle">
+      <div class="flame"></div>
+    </div>
+
+    <div class="cake">
+      <span class="dot one"></span>
+      <span class="dot two"></span>
+      <span class="dot three"></span>
+      <span class="dot four"></span>
+    </div>
+
+  </div>
+
+  <div class="hint" id="hint">
+    LIGHT THE CANDLE
+  </div>
+
+  <div class="message" id="message">
+    Döt l'bun Pice &lt;3
+  </div>
+
+</div>
+
+<script>
+
+const cakeArea = document.getElementById("cakeArea");
+const candle = document.getElementById("candle");
+const instruction = document.getElementById("instruction");
+const hint = document.getElementById("hint");
+const message = document.getElementById("message");
+
+let lit = false;
+let finished = false;
+
+cakeArea.addEventListener("click", function() {
+
+  if (finished) return;
+
+  if (!lit) {
+
+    // Light the candle
+    lit = true;
+    candle.classList.add("lit");
+
+    instruction.textContent = "Make a wish.";
+    hint.textContent = "BLOW IT OUT";
+
+  } else {
+
+    // Blow out the candle
+    lit = false;
+    candle.classList.remove("lit");
+
+    instruction.textContent = "";
+    hint.classList.add("hidden");
+
+    setTimeout(function() {
+      message.classList.add("visible");
+      finished = true;
+    }, 900);
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
+```
