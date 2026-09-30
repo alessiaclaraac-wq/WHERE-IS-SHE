@@ -92,56 +92,106 @@ h1 {
    CAKE AREA
 ===================================================== */
 
-.cake-area {
+    <!-- ================================================= -->
+    <!-- LINEA ORIZZONTALE -->
+    <!-- ================================================= -->
 
-  display: flex;
+    <path class="line"
+          d="M 8 430
+             C 190 430 310 430 450 430
+             L 455 430" />
 
-  flex-direction: column;
-
-  align-items: center;
-
-  cursor: pointer;
-
-  user-select: none;
-
-  -webkit-tap-highlight-color: transparent;
-
-  transition:
-    opacity 1.4s ease,
-    transform 1.4s cubic-bezier(.22,1,.36,1);
-}
+    <path class="line"
+          d="M 745 430
+             C 900 430 1040 430 1195 430" />
 
 
-.cake {
+    <!-- ================================================= -->
+    <!-- BASE DELLA TORTA -->
+    <!-- ================================================= -->
 
-  position: relative;
+    <path class="line"
+          d="
+          M 470 430
+          L 470 331
+          C 470 323 477 317 487 317
+          L 700 317
+          C 715 317 723 323 725 335
+          L 730 430
+          " />
 
-  width: 230px;
-  height: 210px;
-
-  transition:
-    transform .35s ease,
-    opacity 1.3s ease;
-}
-
-
-.cake:hover {
-  transform: scale(1.025);
-}
+    <!-- bordo superiore base -->
+    <path class="line"
+          d="
+          M 471 331
+          C 500 325 545 323 595 323
+          C 650 323 700 325 722 333
+          " />
 
 
-/* =====================================================
-   CAKE DRAWING
-===================================================== */
+    <!-- ================================================= -->
+    <!-- GLASSA DEL PIANO INFERIORE -->
+    <!-- ================================================= -->
 
-.cake svg {
+    <path class="icing"
+          d="
+          M 480 331
+          C 530 325 625 325 715 331
 
-  width: 100%;
-  height: 100%;
+          L 715 358
 
-  overflow: visible;
-}
+          C 702 349 696 348 688 355
+          C 680 363 674 379 665 381
+          C 655 383 649 368 640 360
+          C 631 352 622 353 614 361
+          C 605 370 600 382 590 383
+          C 580 384 574 368 566 360
+          C 557 351 548 351 540 360
+          C 531 370 526 382 516 382
+          C 506 381 502 365 494 358
+          C 488 353 484 354 480 359
 
+          Z
+          " />
+
+
+    <!-- ================================================= -->
+    <!-- PIANO SUPERIORE -->
+    <!-- ================================================= -->
+
+    <path class="line"
+          d="
+          M 510 317
+          L 510 218
+          C 510 210 517 205 528 205
+          L 680 205
+          C 692 205 699 210 700 220
+          L 700 317
+          " />
+
+
+    <!-- ================================================= -->
+    <!-- GLASSA PIANO SUPERIORE -->
+    <!-- ================================================= -->
+
+    <path class="icing"
+          d="
+          M 518 220
+          C 555 213 640 213 692 220
+
+          L 692 246
+
+          C 684 239 678 237 671 242
+          C 662 248 659 262 650 264
+          C 641 266 635 252 627 245
+          C 619 238 610 238 603 246
+          C 594 255 590 267 581 268
+          C 572 269 566 254 558 246
+          C 550 238 541 239 534 247
+          C 527 254 522 263 518 264
+
+          Z
+          " />
 
 /* =====================================================
    DRAWN CANDLE
@@ -163,86 +213,6 @@ h1 {
 
   pointer-events: none;
 }
-
-
-/* -----------------------------------------------------
-   CANDLE BODY
------------------------------------------------------ */
-
-.candle-body {
-
-  position: absolute;
-
-  bottom: 0;
-
-  left: 50%;
-
-  width: 42px;
-  height: 78px;
-
-  transform: translateX(-50%);
-
-  background:
-    linear-gradient(
-      90deg,
-      #d8d2c6 0%,
-      #f8f6ef 22%,
-      #ffffff 50%,
-      #e8e3d9 78%,
-      #cfc8bb 100%
-    );
-
-  border-radius: 5px 5px 3px 3px;
-
-  border: 1.5px solid #171717;
-
-  box-shadow:
-    inset -7px 0 12px rgba(0,0,0,.10),
-    inset 5px 0 10px rgba(255,255,255,.65);
-}
-
-
-/* little wax edge */
-
-.candle-body::before {
-
-  content: "";
-
-  position: absolute;
-
-  top: -3px;
-  left: -1px;
-
-  width: 41px;
-  height: 7px;
-
-  border-radius: 50%;
-
-  background: #f8f6ef;
-
-  border: 1.5px solid #171717;
-}
-
-
-/* subtle candle detail */
-
-.candle-body::after {
-
-  content: "";
-
-  position: absolute;
-
-  top: 17px;
-  left: 7px;
-
-  width: 3px;
-  height: 45px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.7);
-}
-
 
 /* -----------------------------------------------------
    WICK
