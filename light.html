@@ -34,8 +34,11 @@ body {
 ========================================================= */
 
 .container {
-    width: 100%;
+    width: min(92vw, 1000px);
     text-align: center;
+
+    padding: 55px 50px 60px;
+
     transition: opacity .4s ease;
 }
 
@@ -56,7 +59,7 @@ h1 {
     font-size: 15px;
     letter-spacing: 1px;
 
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 
@@ -67,8 +70,7 @@ h1 {
 .cake-wrapper {
     position: relative;
 
-    width: 95vw;
-    max-width: 1200px;
+    width: min(82vw, 850px);
 
     margin: 0 auto;
 
@@ -328,27 +330,6 @@ h1 {
 
 
 /* =========================================================
-   SCRITTA SOTTO LA TORTA
-========================================================= */
-
-.hint {
-
-    margin-top: 8px;
-
-    font-size: 10px;
-    font-weight: 300;
-
-    letter-spacing: 3px;
-
-    opacity: .48;
-
-    transition:
-        opacity .2s ease,
-        letter-spacing .2s ease;
-}
-
-
-/* =========================================================
    MESSAGGIO FINALE
 ========================================================= */
 
@@ -425,6 +406,41 @@ h1 {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94vw;
+        padding: 35px 20px 40px;
+    }
+
+    h1 {
+        font-size: 21px;
+        letter-spacing: 1.5px;
+    }
+
+    .instruction {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .cake-wrapper {
+        width: 88vw;
+    }
+
+    .message-text {
+        font-size: 40px;
+    }
+
+    .heart {
+        font-size: 65px;
+    }
+}
+
 </style>
 </head>
 
@@ -454,7 +470,6 @@ h1 {
     ====================================================== -->
 
     <div class="cake-wrapper" id="cake">
-
 
         <svg
             viewBox="0 0 1200 625"
@@ -573,7 +588,7 @@ h1 {
             />
 
 
-            <!-- CANDELA SPENTA -->
+            <!-- CANDELA -->
 
             <path
                 class="candle"
@@ -612,18 +627,6 @@ h1 {
     </div>
 
 
-    <!-- =====================================================
-         TESTO SOTTO LA TORTA
-    ====================================================== -->
-
-    <div
-        class="hint"
-        id="hint"
-    >
-        LIGHT THE CANDLE
-    </div>
-
-
 </div>
 
 
@@ -659,9 +662,6 @@ const cake =
 const flame =
     document.getElementById("flame");
 
-const hint =
-    document.getElementById("hint");
-
 const scene =
     document.getElementById("scene");
 
@@ -684,7 +684,8 @@ cake.addEventListener("click", () => {
 
 
     /* =====================================================
-       PRIMO CLICK
+       PRIMO CLICK:
+       accende la candela
     ===================================================== */
 
     if (!candleLit) {
@@ -693,13 +694,12 @@ cake.addEventListener("click", () => {
 
         flame.style.opacity = "1";
 
-        hint.textContent = "MAKE A WISH";
-
     }
 
 
     /* =====================================================
-       SECONDO CLICK
+       SECONDO CLICK:
+       messaggio finale
     ===================================================== */
 
     else {
