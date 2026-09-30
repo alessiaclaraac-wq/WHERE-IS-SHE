@@ -671,53 +671,31 @@ const finalMessage =
 
 /* =========================================================
    STATO INIZIALE
+   LA CANDELA È GIÀ ACCESA
 ========================================================= */
 
-flame.style.opacity = "0";
+flame.style.opacity = "1";
 
 
 /* =========================================================
-   CLICK
+   UNICO CLICK
+   SPEGNE LA CANDELA E MOSTRA IL MESSAGGIO
 ========================================================= */
 
 cake.addEventListener("click", () => {
 
+    flame.style.opacity = "0";
 
-    /* =====================================================
-       PRIMO CLICK:
-       accende la candela
-    ===================================================== */
-
-    if (!candleLit) {
-
-        candleLit = true;
-
-        flame.style.opacity = "1";
-
-    }
+    scene.style.opacity = "0";
 
 
-    /* =====================================================
-       SECONDO CLICK:
-       messaggio finale
-    ===================================================== */
+    setTimeout(() => {
 
-    else {
+        scene.style.display = "none";
 
-        flame.style.opacity = "0";
+        finalMessage.classList.add("show");
 
-        scene.style.opacity = "0";
-
-
-        setTimeout(() => {
-
-            scene.style.display = "none";
-
-            finalMessage.classList.add("show");
-
-        }, 400);
-
-    }
+    }, 400);
 
 });
 
